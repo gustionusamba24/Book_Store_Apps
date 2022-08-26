@@ -18,18 +18,10 @@ class SelectedBookScreen extends StatelessWidget {
       bottomNavigationBar: Container(
         margin: EdgeInsets.only(left: 25, right: 25, bottom: 25),
         height: 49,
-        color: Colors.transparent,
         child: FlatButton(
           color: secondaryColor,
           onPressed: () {},
-          child: Text(
-            "Buy Now",
-            style: GoogleFonts.openSans(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: whiteColor,
-            ),
-          ),
+          child: const WishListButton(),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -202,6 +194,34 @@ class SelectedBookScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class WishListButton extends StatefulWidget {
+  const WishListButton({Key key}) : super(key: key);
+
+  @override
+  _WishListButtonState createState() => _WishListButtonState();
+}
+
+class _WishListButtonState extends State<WishListButton> {
+  bool isAdded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      child: Text(
+        isAdded ? "Cancel Wish List" : "Add to Wish List",
+        style: TextStyle(
+          color: whiteColor,
+        ),
+      ),
+      onPressed: () {
+        setState(() {
+          isAdded = !isAdded;
+        });
+      },
     );
   }
 }
